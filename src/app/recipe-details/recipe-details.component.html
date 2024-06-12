@@ -1,0 +1,27 @@
+<div class="d-flex justify-content-center align-items-center min-vh-80">
+  <div class="card mb-3 border-0  ">
+    <img src="{{recipe.pictureUrl}}" class="card-img-top" alt="Recipe Image">
+    <div class="card-body ">
+      <h3 class="card-title text-center mb-4">{{recipe.title}}</h3>
+      <p class="card-text">{{recipe.description}}</p>
+      <h5>Skladniki:</h5>
+      <div *ngFor="let ingredient of recipe.ingredients">
+        <ul>
+          <li>{{ingredient.name}}: {{ingredient.amount}}{{ingredient.unit}}</li>
+        </ul>
+      </div>
+      <h5 class="mt-4">Sposób przygotowania:</h5>
+      <div *ngFor="let step of recipe.steps">
+        <ul>
+          <li>Krok {{step.number}}: {{step.step}}</li>
+        </ul>
+      </div>
+      <p class="card-text"><small class="text-muted">Dodane przez : {{recipe.authorName}}</small></p>
+      <div class="d-flex justify-content-end ">
+        <button type="button" class="btn btn-primary mx-2">Edytuj</button>
+        <button type="button" class="btn btn-danger">Usuń</button>
+      </div>
+    </div>
+  </div>
+</div>
+
