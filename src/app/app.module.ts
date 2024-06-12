@@ -7,6 +7,7 @@ import {HomeComponent} from './home/home.component';
 import {NewRecipeComponent} from './new-recipe/new-recipe.component';
 import {RouterModule} from "@angular/router";
 import {RecipeItemComponent} from './recipe-item/recipe-item.component';
+import { RecipeDetailsComponent } from './recipe-details/recipe-details.component';
 
 @NgModule({
   declarations: [
@@ -14,13 +15,15 @@ import {RecipeItemComponent} from './recipe-item/recipe-item.component';
     NavbarComponent,
     HomeComponent,
     NewRecipeComponent,
-    RecipeItemComponent
+    RecipeItemComponent,
+    RecipeDetailsComponent
   ],
   imports: [
     BrowserModule,
     RouterModule.forRoot([
       {path: "home", component: HomeComponent},
       {path: "add-recipe", component: NewRecipeComponent},
+      {path: "recipe/:id", component: RecipeDetailsComponent},
       {path: '**', redirectTo: '/home', pathMatch: "full"},
     ]),
     NgbModule

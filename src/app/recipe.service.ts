@@ -71,6 +71,69 @@ export class RecipeService {
       }])
   }
 
+  getRecipe(id:any){
+    console.log(id)
+    return of(
+      {
+        "id": "66647f3bbe47922705dcdfea",
+        "authorId": "123",
+        "authorName":"Author name",
+        "pictureUrl": "https://www.kwestiasmaku.com/sites/v123.kwestiasmaku.com/files/trufle-czekoladowe-01.jpg",
+        "description": "Łatwe do zrobienia, dekadenckie czekoladowe trufle, idealne na każdą okazję.",
+        "title": "Czekoladowe Trufle",
+        "ingredients": [
+          {
+            "unit": "G",
+            "name": "gorzka czekolada",
+            "amount": 200
+          },
+          {
+            "unit": "L",
+            "name": "śmietanka kremówka",
+            "amount": 0.1
+          },
+          {
+            "unit": "G",
+            "name": "masło",
+            "amount": 50
+          },
+          {
+            "unit": "G",
+            "name": "kakao",
+            "amount": 20
+          },
+          {
+            "unit": "G",
+            "name": "ekstrakt waniliowy",
+            "amount": 5
+          }
+        ],
+        "steps": [
+          {
+            "number": 1,
+            "step": "Rozpuść czekoladę z masłem w kąpieli wodnej, mieszając do uzyskania gładkiej konsystencji."
+          },
+          {
+            "number": 2,
+            "step": "W rondelku podgrzej śmietankę kremówkę, ale nie doprowadzaj do wrzenia."
+          },
+          {
+            "number": 3,
+            "step": "Wlej ciepłą śmietankę do roztopionej czekolady, dodaj ekstrakt waniliowy i dokładnie wymieszaj."
+          },
+          {
+            "number": 4,
+            "step": "Schłodź masę w lodówce przez około 2 godziny, aż stwardnieje."
+          },
+          {
+            "number": 5,
+            "step": "Formuj z masy małe kulki, obtocz je w kakao i przechowuj w lodówce do podania."
+          }
+        ]
+      }
+    )
+  }
+
   constructor() {
   }
 }
