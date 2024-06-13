@@ -1,1 +1,67 @@
-<p>new-recipe works!</p>
+<div class="container mt-5">
+  <form [formGroup]="recipeForm" (ngSubmit)="onSubmit()">
+    <div class="mb-3">
+      <label for="pictureUrl" class="form-label">Link do zdjęcia</label>
+      <div class="input-group">
+        <input type="text" id="pictureUrl" formControlName="pictureUrl" class="form-control" (input)="updatePicturePreview()" required>
+        <button type="button" class="btn btn-primary" (click)="openPreviewModal()" *ngIf="picturePreview">Podgląd</button>
+      </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal" tabindex="-1" role="dialog" [ngClass]="{'d-block': isImageModalOpen}">
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Podgląd</h5>
+            <button type="button" class="btn-close" aria-label="Close" (click)="closeImageModal()"></button>
+          </div>
+          <div class="modal-body">
+            <img [src]="picturePreview" *ngIf="picturePreview" class="img-fluid" alt="Preview">
+            <app-recipe-details></app-recipe-details>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="title" class="form-label">Tytuł</label>
+      <input type="text" id="title" formControlName="title" class="form-control" required>
+    </div>
+
+    <div class="mb-3">
+      <label for="description" class="form-label">Opis</label>
+      <textarea id="description" formControlName="description" class="form-control" rows="3" required></textarea>
+    </div>
+
+    <div formArrayName="ingredients" class="mb-3">
+      <label class="form-label"><h4>Składniki:</h4></label>
+      <div *ngFor="let ingredient of ingredients.controls; let i=index" [formGroupName]="i" class="mb-2 input-group">
+        <input formControlName="name" placeholder="Składnk" class="form-control">
+        <input formControlName="amount" placeholder="Ilość" type="number" class="form-control mx-2">
+        <input formControlName="unit" placeholder="Jednostka" class="form-control">
+        <div>
+        <button type="button" class="btn btn-danger ms-1" (click)="removeIngredient(i)">-</button></div>
+      </div>
+      <div class="d-flex justify-content-end ">
+        <button type="button" class="btn btn-primary mt-2" (click)="addIngredient()">+</button></div>
+    </div>
+
+    <div formArrayName="steps" class="mb-3">
+      <label class="form-label"><h4>Kroki:</h4></label>
+      <div *ngFor="let step of steps.controls; let j=index" [formGroupName]="j" class="mb-2 d-flex align-items-center">
+        <div class=" d-flex">
+          <input formControlName="number" placeholder="Step Number" type="number" class="form-control step-number border-0" readonly>
+        </div>
+        <textarea formControlName="step" placeholder="Opis kroku" class="form-control flex: 1"></textarea>
+        <button type="button" class="btn btn-danger ms-2" (click)="removeStep(j)">-</button>
+      </div>
+      <div class="d-flex justify-content-end ">
+        <button type="button" class="btn btn-primary " (click)="addStep()">+</button></div>
+    </div>
+    <div class="d-flex justify-content-end ">
+    <button type="submit" class="btn btn-success px-4">Dodaj</button>
+    </div>
+  </form>
+</div>
+

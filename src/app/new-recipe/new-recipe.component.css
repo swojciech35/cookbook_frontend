@@ -1,0 +1,8 @@
+.step-number {
+  width: 50px;
+  flex: 1;
+}
+
+.container{
+  max-width: 50%;
+}
