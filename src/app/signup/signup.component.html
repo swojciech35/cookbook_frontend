@@ -1,0 +1,39 @@
+<div class="container">
+  <h2 class="my-5">Zarejestruj sie </h2>
+  <form (ngSubmit)="onSubmit()" [formGroup]="signupForm">
+    <div class="mb-3">
+      <label for="email" class="form-label">Email</label>
+      <input type="email" class="form-control" id="email" formControlName="email" placeholder="Adres Email">
+      <div *ngIf="signupForm.get('email')?.errors?.['required'] && signupForm.get('email')?.dirty" class="text-danger">
+        Email jest wymagany
+      </div>
+      <div *ngIf="signupForm.get('email')?.errors?.['email'] && signupForm.get('email')?.dirty" class="text-danger">
+        Wprowadź poprawny adres email
+      </div>
+    </div>
+    <div class="mb-3">
+      <label for="password" class="form-label">Hasło</label>
+      <div class="input-group">
+        <input type="{{ hidePassword ? 'password' : 'text' }}" class="form-control" id="password"
+               formControlName="password" placeholder="Minimalna ilość znaków: 6 ">
+        <button class="btn btn-outline-secondary" type="button" (click)="togglePasswordVisibility()">
+          <i class="bi bi-eye{{ hidePassword ? '-slash' : '' }}"></i>
+        </button>
+      </div>
+    </div>
+    <div class="mb-3">
+      <label for="confirmPassword" class="form-label">Powtórz hasło</label>
+      <input type="{{ hidePassword ? 'password' : 'text' }}" class="form-control" id="confirmPassword"
+             formControlName="confirmPassword" placeholder="Minimalna ilość znaków: 6 ">
+      <div *ngIf="signupForm.hasError('passwordMismatch') && signupForm.get('confirmPassword')?.dirty"
+           class="text-danger">
+        Hasła nie są identyczne
+      </div>
+    </div>
+    <button type="submit" [disabled]="isLoading" class="btn btn-primary">Sign Up</button>
+  </form>
+  <div class="spinner" *ngIf="isLoading">
+    <div class="double-bounce1"></div>
+    <div class="double-bounce2"></div>
+  </div>
+</div>

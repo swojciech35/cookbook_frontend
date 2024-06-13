@@ -8,6 +8,12 @@ import {NewRecipeComponent} from './new-recipe/new-recipe.component';
 import {RouterModule} from "@angular/router";
 import {RecipeItemComponent} from './recipe-item/recipe-item.component';
 import { RecipeDetailsComponent } from './recipe-details/recipe-details.component';
+import { SignupComponent } from './signup/signup.component';
+import { SigninComponent } from './signin/signin.component';
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {HttpClientModule} from "@angular/common/http";
+import {ToastrModule} from "ngx-toastr";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 @NgModule({
   declarations: [
@@ -16,7 +22,10 @@ import { RecipeDetailsComponent } from './recipe-details/recipe-details.componen
     HomeComponent,
     NewRecipeComponent,
     RecipeItemComponent,
-    RecipeDetailsComponent
+    RecipeDetailsComponent,
+    SignupComponent,
+    SigninComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -24,9 +33,18 @@ import { RecipeDetailsComponent } from './recipe-details/recipe-details.componen
       {path: "home", component: HomeComponent},
       {path: "add-recipe", component: NewRecipeComponent},
       {path: "recipe/:id", component: RecipeDetailsComponent},
+      {path: "signup", component: SignupComponent},
+      {path: "signin", component: SigninComponent},
       {path: '**', redirectTo: '/home', pathMatch: "full"},
     ]),
-    NgbModule
+    NgbModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+    BrowserAnimationsModule, // required animations module
+    ToastrModule.forRoot(),
+
+
   ],
   providers: [],
   bootstrap: [AppComponent]
