@@ -54,17 +54,17 @@ export class SignupComponent {
         .subscribe(result => {
           if (result == 200) {
             this.isLoading = false;
-            this.toastr.success('Rejestracja przebiegła pomyślnie')
+            this.toastr.success('Rejestracja przebiegła pomyslnie')
             this.router.navigate(['/signin'])
 
           } else {
             this.isLoading = false;
-            this.toastr.error("Błąd podczas rejestracji")
+            this.toastr.error("Błąd podczas rejestracji użytkownika")
           }
         }, error => {
           this.isLoading = false;
           console.error('Błąd podczas rejestracji: ', error.message);
-          this.toastr.error("Błąd podczas rejestracji")
+          this.toastr.error("Błąd podczas rejestracji użytkownika")
         })
     }
   }

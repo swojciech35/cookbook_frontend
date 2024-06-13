@@ -1,4 +1,6 @@
 import {Component} from '@angular/core';
+import {AuthService} from "../auth.service";
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-navbar',
@@ -7,6 +9,11 @@ import {Component} from '@angular/core';
 })
 export class NavbarComponent {
   isMenuCollapsed: boolean = true;
-  isLoggedIn: boolean = true;
 
+  constructor(public authService: AuthService, private toastr: ToastrService) {
+  }
+
+  signOutToaaster() {
+    this.toastr.success("Wylogowano")
+  }
 }
