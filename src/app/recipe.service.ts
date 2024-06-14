@@ -48,4 +48,16 @@ export class RecipeService {
     );
   }
 
+  deleteRecipe(id: any) {
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${sessionStorage.getItem("cookbookToken")}`
+    });
+    return this.http.delete(this.url + `/recipe/${id}`, {headers: headers, observe: 'response'}).pipe(
+      map((result: HttpResponse<any>) => {
+        return result;
+      })
+    );
+  }
+
+
 }

@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {RecipeService} from "../recipe.service";
 import {ToastrService} from "ngx-toastr";
 import {AuthService} from "../auth.service";
@@ -14,6 +14,7 @@ export class RecipeDetailsComponent implements OnInit {
   recipe: any = [];
   isLoading = true
   canMenage = false
+  isModalDeleteOpen: any = false;
 
   ngOnInit(): void {
     this.route.paramMap.subscribe((params: any) => {
@@ -41,6 +42,31 @@ export class RecipeDetailsComponent implements OnInit {
       this.canMenage = false
   }
 
-  constructor(private recipeService: RecipeService, private authService: AuthService, private route: ActivatedRoute, private toastr: ToastrService) {
+  constructor(private recipeService: RecipeService, private authService: AuthService, private route: ActivatedRoute, private router: Router, private toastr: ToastrService) {
+  }
+
+  closeDeleteModal() {
+    this.isModalDeleteOpen = false
+  }
+
+  openDeleteModal() {
+    this.isModalDeleteOpen = true
+  }
+
+  deleteRecipe() {
+    this.isLoading=true
+    this.recipeService.deleteRecipe(this.id).subscribe((result: any) => {
+        if (result.status == 200) {
+          this.isLoading=false
+          this.toastr.success("Usunięto przepis")
+          this.router.navigate([`/home`])
+        } else {
+          this.toastr.error("Wystąpił błąd podczas usuwania przepisu")
+        }
+      }, error => {
+        console.error('Wystąpił błąd podczas usuwania przepisu: ');
+        this.toastr.error("Wystąpił błąd podczas usuwania przepisu")
+      }
+    )
   }
 }
