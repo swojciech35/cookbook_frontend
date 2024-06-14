@@ -1,10 +1,16 @@
 import {Injectable} from '@angular/core';
-import {of} from "rxjs";
+import {map, of} from "rxjs";
+import {HttpClient, HttpHeaders, HttpResponse} from "@angular/common/http";
 
 @Injectable({
   providedIn: 'root'
 })
 export class RecipeService {
+
+  private url = 'https://cookbookapiw71257w71209.azurewebsites.net/api';
+
+  constructor(private http: HttpClient) {
+  }
 
   getAllRecipes() {
     return of([{
@@ -71,13 +77,13 @@ export class RecipeService {
       }])
   }
 
-  getRecipe(id:any){
+  getRecipe(id: any) {
     console.log(id)
     return of(
       {
         "id": "66647f3bbe47922705dcdfea",
         "authorId": "123",
-        "authorName":"Author name",
+        "authorName": "Author name",
         "pictureUrl": "https://www.kwestiasmaku.com/sites/v123.kwestiasmaku.com/files/trufle-czekoladowe-01.jpg",
         "description": "Łatwe do zrobienia, dekadenckie czekoladowe trufle, idealne na każdą okazję.",
         "title": "Czekoladowe Trufle",
@@ -134,6 +140,15 @@ export class RecipeService {
     )
   }
 
-  constructor() {
+  addRecipe(recipeData: any) {
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${sessionStorage.getItem("cookbookToken")}`
+    });
+    console.log(recipeData)
+     return this.http.post(this.url + '/recipe', recipeData, {headers: headers, observe: 'response'}).pipe(
+      map((result: HttpResponse<any>) => {
+        return result;
+      })
+    );
   }
 }
