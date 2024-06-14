@@ -3,6 +3,7 @@
   flex-direction: column;
   justify-content: space-between;
   height: 100%;
+  background-color: rgba(243, 240, 229, 0.80);
 }
 
 .card-img-container {

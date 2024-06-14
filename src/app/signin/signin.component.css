@@ -1,5 +1,6 @@
 .container {
   max-width: 30%;
+  background-color: rgba(243, 240, 229, 0.80);
 }
 
 .spinner {
