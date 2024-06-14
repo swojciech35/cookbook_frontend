@@ -15,6 +15,7 @@ import {HttpClientModule} from "@angular/common/http";
 import {ToastrModule} from "ngx-toastr";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import { RecipePreviewComponent } from './recipe-preview/recipe-preview.component';
+import { EditRecipeComponent } from './edit-recipe/edit-recipe.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { RecipePreviewComponent } from './recipe-preview/recipe-preview.componen
     SignupComponent,
     SigninComponent,
     RecipePreviewComponent,
+    EditRecipeComponent,
 
   ],
   imports: [

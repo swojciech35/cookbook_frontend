@@ -15,6 +15,7 @@ export class RecipeDetailsComponent implements OnInit {
   isLoading = true
   canMenage = false
   isModalDeleteOpen: any = false;
+  isModalEditOpen: any = false;
 
   ngOnInit(): void {
     this.route.paramMap.subscribe((params: any) => {
@@ -54,10 +55,10 @@ export class RecipeDetailsComponent implements OnInit {
   }
 
   deleteRecipe() {
-    this.isLoading=true
+    this.isLoading = true
     this.recipeService.deleteRecipe(this.id).subscribe((result: any) => {
         if (result.status == 200) {
-          this.isLoading=false
+          this.isLoading = false
           this.toastr.success("Usunięto przepis")
           this.router.navigate([`/home`])
         } else {
@@ -68,5 +69,13 @@ export class RecipeDetailsComponent implements OnInit {
         this.toastr.error("Wystąpił błąd podczas usuwania przepisu")
       }
     )
+  }
+
+  closeEditModal() {
+    this.isModalEditOpen = false;
+  }
+
+  openEditModal() {
+    this.isModalEditOpen = true;
   }
 }

@@ -18,7 +18,7 @@
       </div>
       <p class="card-text"><small class="text-muted">Dodane przez : {{recipe.authorName}}</small></p>
       <div class="d-flex justify-content-end" *ngIf="canMenage">
-        <button type="button" class="btn btn-primary mx-2">Edytuj</button>
+        <button type="button" class="btn btn-primary mx-2" (click)="openEditModal()">Edytuj</button>
         <button type="button" class="btn btn-danger" (click)="openDeleteModal()">Usuń</button>
       </div>
     </div>
@@ -34,6 +34,19 @@
               <button type="button" class="btn btn-secondary mx-2" (click)="closeDeleteModal()">Wróć</button>
               <button type="button" class="btn btn-danger" (click)="deleteRecipe()">Usuń</button>
             </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal " tabindex="-1" role="dialog" [ngClass]="{'d-block': isModalEditOpen}">
+      <div class="modal-dialog modal-xl" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Edycja <b>{{recipe.title}}</b></h5>
+            <button type="button" class="btn-close" aria-label="Close" (click)="closeEditModal()"></button>
+          </div>
+          <div class="modal-body">
+            <app-edit-recipe [recipe]="recipe"></app-edit-recipe>
           </div>
         </div>
       </div>
