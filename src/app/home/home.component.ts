@@ -1,5 +1,6 @@
 import {Component} from '@angular/core';
 import {RecipeService} from "../recipe.service";
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-home',
@@ -8,17 +9,25 @@ import {RecipeService} from "../recipe.service";
 })
 export class HomeComponent {
   recipes: any[] = [];
+  isLoading = true
 
-
-  constructor(private recipeService: RecipeService) {
+  constructor(private recipeService: RecipeService, private toastr: ToastrService) {
   }
 
   ngOnInit(): void {
-    this
-      .recipeService
+    this.recipeService
       .getAllRecipes()
-      .subscribe({
-        next: recipes => this.recipes = recipes
+      .subscribe(result => {
+        if (result.status == 200) {
+          this.isLoading = false;
+          this.recipes = result.body
+        } else {
+          this.toastr.error("Wystąpił błąd podczas pobierania danych")
+        }
+      }, error => {
+        console.error('Wystąpił błąd podczas pobierania danych: ', error.message);
+        this.toastr.error("Wystąpił błąd podczas pobierania danych")
+        this.ngOnInit()
       })
   }
 }

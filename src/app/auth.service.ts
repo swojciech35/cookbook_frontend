@@ -7,7 +7,6 @@ import {JwtHelperService} from "@auth0/angular-jwt";
   providedIn: 'root'
 })
 export class AuthService {
-
   private url = 'https://cookbookapiw71257w71209.azurewebsites.net/api';
 
   constructor(private http: HttpClient) {
