@@ -17,7 +17,7 @@
         </ul>
       </div>
       <p class="card-text"><small class="text-muted">Dodane przez : {{recipe.authorName}}</small></p>
-      <div class="d-flex justify-content-end ">
+      <div class="d-flex justify-content-end" *ngIf="canMenage">
         <button type="button" class="btn btn-primary mx-2">Edytuj</button>
         <button type="button" class="btn btn-danger">Usuń</button>
       </div>
