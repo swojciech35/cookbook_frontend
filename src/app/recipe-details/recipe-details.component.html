@@ -1,5 +1,5 @@
 <div class="d-flex justify-content-center align-items-center min-vh-80">
-  <div class="card mb-3 border-0  ">
+  <div class="card mb-3 border-0  " *ngIf="!isLoading">
     <img src="{{recipe.pictureUrl}}" class="card-img-top" alt="Recipe Image">
     <div class="card-body ">
       <h3 class="card-title text-center mb-4">{{recipe.title}}</h3>
@@ -22,6 +22,10 @@
         <button type="button" class="btn btn-danger">Usuń</button>
       </div>
     </div>
+  </div>
+  <div class="spinner" *ngIf="isLoading">
+    <div class="double-bounce1"></div>
+    <div class="double-bounce2"></div>
   </div>
 </div>
 
