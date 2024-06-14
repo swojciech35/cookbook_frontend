@@ -14,6 +14,7 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
 import {ToastrModule} from "ngx-toastr";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import { RecipePreviewComponent } from './recipe-preview/recipe-preview.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
     RecipeDetailsComponent,
     SignupComponent,
     SigninComponent,
+    RecipePreviewComponent,
 
   ],
   imports: [
