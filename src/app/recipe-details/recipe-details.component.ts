@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {RecipeService} from "../recipe.service";
 import {ToastrService} from "ngx-toastr";
+import {AuthService} from "../auth.service";
 
 @Component({
   selector: 'app-recipe-details',
@@ -12,6 +13,7 @@ export class RecipeDetailsComponent implements OnInit {
   public id: string = '';
   recipe: any = [];
   isLoading = true
+  canMenage = false
 
   ngOnInit(): void {
     this.route.paramMap.subscribe((params: any) => {
@@ -29,8 +31,16 @@ export class RecipeDetailsComponent implements OnInit {
       this.toastr.error("Wystąpił błąd podczas pobierania danych")
       this.ngOnInit()
     })
+    this.authService.isLoggedIn() ? (
+        this.recipeService.canManageRecipe(this.id).subscribe((result: any) => {
+          this.canMenage = result.body
+        }, (error: any) => {
+          this.canMenage = false
+        }))
+      :
+      this.canMenage = false
   }
 
-  constructor(private recipeService: RecipeService, private route: ActivatedRoute, private toastr: ToastrService) {
+  constructor(private recipeService: RecipeService, private authService: AuthService, private route: ActivatedRoute, private toastr: ToastrService) {
   }
 }

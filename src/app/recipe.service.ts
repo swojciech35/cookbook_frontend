@@ -30,11 +30,22 @@ export class RecipeService {
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${sessionStorage.getItem("cookbookToken")}`
     });
-    console.log(recipeData)
     return this.http.post(this.url + '/recipe', recipeData, {headers: headers, observe: 'response'}).pipe(
       map((result: HttpResponse<any>) => {
         return result;
       })
     );
   }
+
+  canManageRecipe(id: any) {
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${sessionStorage.getItem("cookbookToken")}`
+    });
+    return this.http.post(this.url + `/recipe/${id}/can-manage`, {}, {headers: headers, observe: 'response'}).pipe(
+      map((result: HttpResponse<any>) => {
+        return result;
+      })
+    );
+  }
+
 }
