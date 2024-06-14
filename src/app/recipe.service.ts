@@ -59,5 +59,15 @@ export class RecipeService {
     );
   }
 
+  editRecipe(formData: any) {
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${sessionStorage.getItem("cookbookToken")}`
+    });
+    return this.http.put(this.url + `/recipe/${formData.id}`, formData, {headers: headers, observe: 'response'}).pipe(
+      map((result: HttpResponse<any>) => {
+        return result;
+      })
+    );
+  }
 
 }
