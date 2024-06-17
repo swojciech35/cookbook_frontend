@@ -7,15 +7,16 @@ import {HomeComponent} from './home/home.component';
 import {NewRecipeComponent} from './new-recipe/new-recipe.component';
 import {RouterModule} from "@angular/router";
 import {RecipeItemComponent} from './recipe-item/recipe-item.component';
-import { RecipeDetailsComponent } from './recipe-details/recipe-details.component';
-import { SignupComponent } from './signup/signup.component';
-import { SigninComponent } from './signin/signin.component';
+import {RecipeDetailsComponent} from './recipe-details/recipe-details.component';
+import {SignupComponent} from './signup/signup.component';
+import {SigninComponent} from './signin/signin.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
 import {ToastrModule} from "ngx-toastr";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
-import { RecipePreviewComponent } from './recipe-preview/recipe-preview.component';
-import { EditRecipeComponent } from './edit-recipe/edit-recipe.component';
+import {RecipePreviewComponent} from './recipe-preview/recipe-preview.component';
+import {EditRecipeComponent} from './edit-recipe/edit-recipe.component';
+import {ShopListComponent} from './shop-list/shop-list.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { EditRecipeComponent } from './edit-recipe/edit-recipe.component';
     SigninComponent,
     RecipePreviewComponent,
     EditRecipeComponent,
+    ShopListComponent,
 
   ],
   imports: [

@@ -70,4 +70,14 @@ export class RecipeService {
     );
   }
 
+  getShopList(data: any) {
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${sessionStorage.getItem("cookbookToken")}`
+    });
+    return this.http.post(this.url + `/recipe/shoplist`, data, {headers: headers, observe: 'response'}).pipe(
+      map((result: HttpResponse<any>) => {
+        return result;
+      })
+    );
+  }
 }
