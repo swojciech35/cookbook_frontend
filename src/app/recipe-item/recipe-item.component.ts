@@ -1,4 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {AuthService} from "../auth.service";
 
 @Component({
   selector: 'app-recipe-item',
@@ -11,6 +12,8 @@ export class RecipeItemComponent implements OnInit {
 
   ngOnInit(): void {
     this.initializeCheckboxState();
+  }
+  constructor(public authService: AuthService) {
   }
 
   initializeCheckboxState(): void {
