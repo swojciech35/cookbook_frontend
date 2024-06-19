@@ -16,6 +16,7 @@ export class RecipeDetailsComponent implements OnInit {
   canMenage = false
   isModalDeleteOpen: any = false;
   isModalEditOpen: any = false;
+  isLoadingCanManage = true;
 
   ngOnInit(): void {
     this.route.paramMap.subscribe((params: any) => {
@@ -35,15 +36,21 @@ export class RecipeDetailsComponent implements OnInit {
     })
     this.authService.isLoggedIn() ? (
         this.recipeService.canManageRecipe(this.id).subscribe((result: any) => {
+          this.isLoadingCanManage = false;
           this.canMenage = result.body
         }, (error: any) => {
-          this.canMenage = false
+          this.setManageFalse()
         }))
-      :
-      this.canMenage = false
+      : this.setManageFalse()
+
   }
 
   constructor(private recipeService: RecipeService, private authService: AuthService, private route: ActivatedRoute, private router: Router, private toastr: ToastrService) {
+  }
+
+  setManageFalse() {
+    this.isLoadingCanManage = false
+    this.canMenage = false
   }
 
   closeDeleteModal() {
