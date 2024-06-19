@@ -1,5 +1,8 @@
+<div>
+  <app-search-bar (filterChange)="onFilterChange($event)"></app-search-bar>
+</div>
 <div class="row row-cols-lg-4  row-cols-md-3 row-cols-sm-2 row-cols-1 mx-5">
-  <app-recipe-item *ngFor="let recipe of recipes" [recipe]="recipe"></app-recipe-item>
+  <app-recipe-item *ngFor="let recipe of recipes|filter:filterTitle" [recipe]="recipe"></app-recipe-item>
   <div class="spinner" *ngIf="isLoading">
     <div class="double-bounce1"></div>
     <div class="double-bounce2"></div>

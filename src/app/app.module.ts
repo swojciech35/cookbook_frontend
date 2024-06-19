@@ -17,6 +17,8 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {RecipePreviewComponent} from './recipe-preview/recipe-preview.component';
 import {EditRecipeComponent} from './edit-recipe/edit-recipe.component';
 import {ShopListComponent} from './shop-list/shop-list.component';
+import { SearchBarComponent } from './search-bar/search-bar.component';
+import { FilterTitlePipe } from './filter-title.pipe';
 
 @NgModule({
   declarations: [
@@ -31,6 +33,8 @@ import {ShopListComponent} from './shop-list/shop-list.component';
     RecipePreviewComponent,
     EditRecipeComponent,
     ShopListComponent,
+    SearchBarComponent,
+    FilterTitlePipe,
 
   ],
   imports: [
