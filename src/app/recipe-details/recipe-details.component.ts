@@ -22,9 +22,6 @@ export class RecipeDetailsComponent implements OnInit {
     this.route.paramMap.subscribe((params: any) => {
       this.id = params.get('id');
     })
-    setTimeout(() => {
-
-
     this.recipeService.getRecipe(this.id).subscribe(result => {
       if (result.status == 200) {
         this.isLoading = false;
@@ -36,7 +33,7 @@ export class RecipeDetailsComponent implements OnInit {
       console.error('Wystąpił błąd podczas pobierania danych: ', error.message);
       this.toastr.error("Wystąpił błąd podczas pobierania danych")
       this.ngOnInit()
-    }) }, 100);
+    })
     this.authService.isLoggedIn() ? (
         this.recipeService.canManageRecipe(this.id).subscribe((result: any) => {
           this.isLoadingCanManage = false;
