@@ -1,6 +1,7 @@
-import {Component} from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {RecipeService} from "../recipe.service";
 import {ToastrService} from "ngx-toastr";
+import {filter} from "rxjs";
 
 @Component({
   selector: 'app-home',
@@ -8,6 +9,7 @@ import {ToastrService} from "ngx-toastr";
   styleUrl: './home.component.css'
 })
 export class HomeComponent {
+  filterTitle: string = '';
   recipes: any[] = [];
   isLoading = true
 
@@ -30,4 +32,8 @@ export class HomeComponent {
         this.ngOnInit()
       })
   }
+  onFilterChange(filterValue: string): void {
+    this.filterTitle = filterValue;
+  }
+
 }
