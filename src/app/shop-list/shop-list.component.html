@@ -1,8 +1,6 @@
-<div class="container px-5 p-3 pb-4">
-
+<div class="container px-5 p-3 pb-4" *ngIf="shopList && shopList.recipeTitles">
   <div>
     <h4>Wygenerowana lista zakupów dla wybranych przepisów: </h4>
-
     <div *ngFor="let title of shopList.recipeTitles">
       <ul>
         <li>{{title}}</li>
@@ -18,6 +16,4 @@
       </ul>
     </div>
   </div>
-
-
 </div>

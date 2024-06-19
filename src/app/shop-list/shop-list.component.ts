@@ -6,15 +6,5 @@ import {Component, Input} from '@angular/core';
   styleUrl: './shop-list.component.css'
 })
 export class ShopListComponent {
-
   @Input() shopList: any
-
-  constructor() {
-    this.shopList = {
-      recipeTitles: [],
-      ingredients: []
-    }
-  }
-
-
 }
