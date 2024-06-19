@@ -16,11 +16,15 @@ export class RecipeDetailsComponent implements OnInit {
   canMenage = false
   isModalDeleteOpen: any = false;
   isModalEditOpen: any = false;
+  isLoadingCanManage = true;
 
   ngOnInit(): void {
     this.route.paramMap.subscribe((params: any) => {
       this.id = params.get('id');
     })
+    setTimeout(() => {
+
+
     this.recipeService.getRecipe(this.id).subscribe(result => {
       if (result.status == 200) {
         this.isLoading = false;
@@ -32,18 +36,24 @@ export class RecipeDetailsComponent implements OnInit {
       console.error('Wystąpił błąd podczas pobierania danych: ', error.message);
       this.toastr.error("Wystąpił błąd podczas pobierania danych")
       this.ngOnInit()
-    })
+    }) }, 100);
     this.authService.isLoggedIn() ? (
         this.recipeService.canManageRecipe(this.id).subscribe((result: any) => {
+          this.isLoadingCanManage = false;
           this.canMenage = result.body
         }, (error: any) => {
-          this.canMenage = false
+          this.setManageFalse()
         }))
-      :
-      this.canMenage = false
+      : this.setManageFalse()
+
   }
 
   constructor(private recipeService: RecipeService, private authService: AuthService, private route: ActivatedRoute, private router: Router, private toastr: ToastrService) {
+  }
+
+  setManageFalse() {
+    this.isLoadingCanManage = false
+    this.canMenage = false
   }
 
   closeDeleteModal() {
