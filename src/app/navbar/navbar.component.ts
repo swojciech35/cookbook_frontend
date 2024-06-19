@@ -12,7 +12,7 @@ export class NavbarComponent {
   isMenuCollapsed: boolean = true;
   isShowShopListModal: any = false;
   shopListIds: any = []
-  shopList: any
+  shopList: any= []
   isLoading = false
 
   constructor(public authService: AuthService, private toastr: ToastrService, private recipeService: RecipeService) {
