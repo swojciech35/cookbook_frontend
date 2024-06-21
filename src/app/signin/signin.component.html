@@ -1,0 +1,30 @@
+<div class="container p-5">
+  <h2 class="py-3">Zaloguj się</h2>
+  <form (ngSubmit)="onSubmit()" [formGroup]="loginForm">
+    <div class="mb-3">
+      <label for="email" class="form-label">Email</label>
+      <input type="email" class="form-control" id="email" formControlName="email">
+      <div *ngIf="loginForm.get('email')?.errors?.['required'] && loginForm.get('email')?.dirty" class="text-danger">
+        Email jest wymagany
+      </div>
+      <div *ngIf="loginForm.get('email')?.errors?.['email'] && loginForm.get('email')?.dirty" class="text-danger">
+        Wprowadź poprawny adres email
+      </div>
+    </div>
+    <div class="mb-3">
+      <label for="password" class="form-label">Hasło</label>
+      <div class="input-group">
+        <input type="{{ hidePassword ? 'password' : 'text' }}" class="form-control" id="password"
+               formControlName="password">
+        <button class="btn btn-outline-secondary" type="button" (click)="togglePasswordVisibility()">
+          <i class="bi bi-eye{{ hidePassword ? '-slash' : '' }}"></i>
+        </button>
+      </div>
+    </div>
+    <button type="submit" [disabled]="isLoading" class="btn btn-primary">Zaloguj się </button>
+  </form>
+  <div class="spinner" *ngIf="isLoading">
+    <div class="double-bounce1"></div>
+    <div class="double-bounce2"></div>
+  </div>
+</div>

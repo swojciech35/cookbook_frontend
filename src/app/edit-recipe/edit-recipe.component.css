@@ -1,0 +1,17 @@
+img{
+  max-width: 20%;
+}
+input.ng-invalid.ng-touched,
+select.ng-invalid.ng-touched,
+textarea.ng-invalid.ng-touched {
+  border: 1px solid red;
+}
+.container{
+  background-color: rgb(236, 227, 211);
+}
+.step-number {
+  width: 80px;
+  flex: 1;
+  background-color: rgba(255, 0, 0, 0);
+  text-align: center;
+}

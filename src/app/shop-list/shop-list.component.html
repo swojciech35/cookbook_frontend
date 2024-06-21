@@ -1,0 +1,19 @@
+<div class="container px-5 p-3 pb-4" *ngIf="shopList && shopList.recipeTitles">
+  <div>
+    <h4>Wygenerowana lista zakupów dla wybranych przepisów: </h4>
+    <div *ngFor="let title of shopList.recipeTitles">
+      <ul>
+        <li>{{title}}</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="my-2">
+    <h4>Lista zakupów: </h4>
+    <div *ngFor="let ingredient of shopList.ingredients">
+      <ul>
+        <li>{{ingredient.name}}: {{ingredient.amount}}{{ingredient.unit}}</li>
+      </ul>
+    </div>
+  </div>
+</div>

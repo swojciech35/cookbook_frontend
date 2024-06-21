@@ -1,0 +1,59 @@
+<div class="d-flex justify-content-center align-items-center min-vh-80" *ngIf="!isLoading && !isLoadingCanManage">
+  <div class="card mb-3 border-0  ">
+    <img src="{{recipe.pictureUrl}}" class="card-img-top" alt="Recipe Image">
+    <div class="card-body ">
+      <h3 class="card-title text-center mb-4">{{recipe.title}}</h3>
+      <p class="card-text">{{recipe.description}}</p>
+      <h5>Skladniki:</h5>
+      <div *ngFor="let ingredient of recipe.ingredients">
+        <ul>
+          <li>{{ingredient.name}}: {{ingredient.amount}}{{ingredient.unit}}</li>
+        </ul>
+      </div>
+      <h5 class="mt-4">Sposób przygotowania:</h5>
+      <div *ngFor="let step of recipe.steps">
+        <ul>
+          <li>Krok {{step.number}}: {{step.step}}</li>
+        </ul>
+      </div>
+      <p class="card-text"><small class="text-muted">Dodane przez : {{recipe.authorName}}</small></p>
+      <div class="d-flex justify-content-end" *ngIf="canMenage">
+        <button type="button" class="btn btn-primary mx-2" (click)="openEditModal()">Edytuj</button>
+        <button type="button" class="btn btn-danger" (click)="openDeleteModal()">Usuń</button>
+      </div>
+    </div>
+    <div class="modal " tabindex="-1" role="dialog" [ngClass]="{'d-block': isModalDeleteOpen}">
+      <div class="modal-dialog modal-fullscreen-sm-down" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Czy na pewno chcesz usunąć przepis? </h5>
+            <button type="button" class="btn-close" aria-label="Close" (click)="closeDeleteModal()"></button>
+          </div>
+          <div class="modal-body">
+            <div class="d-flex justify-content-evenly">
+              <button type="button" class="btn btn-secondary mx-2" (click)="closeDeleteModal()">Wróć</button>
+              <button type="button" class="btn btn-danger" (click)="deleteRecipe()">Usuń</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal " tabindex="-1" role="dialog" [ngClass]="{'d-block': isModalEditOpen}">
+      <div class="modal-dialog modal-xl" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Edycja <b>{{recipe.title}}</b></h5>
+            <button type="button" class="btn-close" aria-label="Close" (click)="closeEditModal()"></button>
+          </div>
+          <div class="modal-body">
+            <app-edit-recipe [recipe]="recipe"></app-edit-recipe>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="spinner" *ngIf="isLoading || isLoadingCanManage">
+  <div class="double-bounce1"></div>
+  <div class="double-bounce2"></div>
+</div>

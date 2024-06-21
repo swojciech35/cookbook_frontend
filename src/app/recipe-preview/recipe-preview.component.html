@@ -1,0 +1,21 @@
+<div class=" container d-flex justify-content-center align-items-center min-vh-80">
+  <div class="card mb-3 border-0  ">
+    <img src="{{picture}}" class="card-img-top" alt="Recipe Image">
+    <div class="card-body ">
+      <h3 class="card-title text-center mb-4">{{title}}</h3>
+      <p class="card-text">{{description}}</p>
+      <h5>Skladniki:</h5>
+      <div *ngFor="let ingredient of ingredients">
+        <ul>
+          <li>{{ingredient.name}}: {{ingredient.amount}}{{ingredient.unit}}</li>
+        </ul>
+      </div>
+      <h5 class="mt-4">Sposób przygotowania:</h5>
+      <div *ngFor="let step of steps">
+        <ul>
+          <li>Krok {{step.number}}: {{step.step}}</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
